@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "i6sDWOKtHqytaGCvrYpvpRRCdupvWeV40c8mFe15+aQ5H/xI91h+y/LwqNpZPodX9uE/TM4mafldAVbIFDzWzA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Ezek_\\Documents\\Code\\CustomerTask\\CustomerTask.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Ezek_\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}
