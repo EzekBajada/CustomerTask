@@ -19,6 +19,5 @@ namespace CustomerTask.Models
         [Required]
         public bool Activity { get; set; }
         
-        
     }
 }

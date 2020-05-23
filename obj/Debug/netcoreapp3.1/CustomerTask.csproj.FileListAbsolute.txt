@@ -26,3 +26,14 @@ C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\Microsoft.Ext
 C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.csproj.CopyComplete
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\CustomerTask.deps.json
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\CustomerTask.runtimeconfig.json
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\CustomerTask.runtimeconfig.dev.json
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\CustomerTask.dll
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\CustomerTask.pdb
+C:\Users\Ezek_\Documents\Code\CustomerTask\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.InMemory.dll
+C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.csproj.CoreCompileInputs.cache
+C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.dll
+C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.pdb
+C:\Users\Ezek_\Documents\Code\CustomerTask\obj\Debug\netcoreapp3.1\CustomerTask.genruntimeconfig.cache
