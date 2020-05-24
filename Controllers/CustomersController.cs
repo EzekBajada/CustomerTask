@@ -43,6 +43,7 @@ namespace CustomerTask.Controllers
             return Ok(customer);
         }
 
+        [Microsoft.AspNetCore.Mvc.Route("/api/Addcustomer")]
         [HttpPost]
         public async Task<IActionResult> AddCustomer([FromBody] Customers customer)
         {
@@ -53,7 +54,7 @@ namespace CustomerTask.Controllers
 
             var customerCheck = db.Customers.FindAsync(customer.ID);
             
-            if(customerCheck.Result.ID != 0)
+            if(customerCheck.Result != null)
             {
                 ModelState.AddModelError("Customer ID", $"Customer {customer.ID} already exists");
                 return BadRequest(ModelState);
@@ -64,6 +65,7 @@ namespace CustomerTask.Controllers
             return Ok(customer.ID);
         }
 
+        [Microsoft.AspNetCore.Mvc.Route("/api/EditCustomers")]
         [HttpPost]
         public async Task<IActionResult> EditCustomer([FromBody] Customers customer)
         {
@@ -80,14 +82,16 @@ namespace CustomerTask.Controllers
             }
 
             customerCheck.Result.FullName = customer.FullName;
-            customerCheck.Result.Details = customer.Details;
             customerCheck.Result.Position = customer.Position;
+            customerCheck.Result.Country = customer.Country;
+            customerCheck.Result.Activity = customer.Activity;
 
             db.Customers.Update(customerCheck.Result);
             await db.SaveChangesAsync();
             return Ok(customer.ID);
         }
 
+        [Microsoft.AspNetCore.Mvc.Route("/api/DeleteCustomers/{customerId}")]
         [HttpPost]
         public async Task<IActionResult> DeleteCustomer(int id)
         {

@@ -8,6 +8,8 @@ namespace CustomerTask.Models
 {
     public class Customers
     {
+        public enum Countries { Malta, England, Italy, Greece }
+
         [Required]
         public int ID { get; set; }
 
@@ -20,7 +22,12 @@ namespace CustomerTask.Models
         public string Position { get; set; }
 
         [Required]
-        public CustomerDetails Details { get; set; }
+        public Countries Country { get; set; }
+
+        /// <summary>
+        /// This determines if the employee is an active employee or inactive
+        /// </summary>
+        public bool Activity { get; set; }
     }
 }
     
