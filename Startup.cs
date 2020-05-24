@@ -20,6 +20,11 @@ namespace CustomerTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CustomerContext>(ops => ops.UseInMemoryDatabase("Customers"));
+            // 4200 is the default port used by angular, and will not be changed
+            services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
+            {
+                builder.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
+            }));
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
@@ -30,6 +35,7 @@ namespace CustomerTask
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("ApiCorsPolicy");
             app.UseMvc();
         }
     }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Net.WebSockets;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.Reflection.Metadata.Ecma335;
+using Microsoft.AspNetCore.Cors;
 
 namespace CustomerTask.Controllers
 {
@@ -93,13 +94,13 @@ namespace CustomerTask.Controllers
 
         [Microsoft.AspNetCore.Mvc.Route("/api/DeleteCustomers/{customerId}")]
         [HttpPost]
-        public async Task<IActionResult> DeleteCustomer(int id)
+        public async Task<IActionResult> DeleteCustomer(int customerId)
         {
-            var customer = await db.Customers.FindAsync(id);
+            var customer = await db.Customers.FindAsync(customerId);
 
             if (customer == null)
             {
-                ModelState.AddModelError("Customer ID", $"Customer {customer.ID} does not exist");
+                ModelState.AddModelError("Customer ID", $"Customer {customerId} does not exist");
                 return BadRequest(ModelState);
             }
 
