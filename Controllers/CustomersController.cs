@@ -29,6 +29,13 @@ namespace CustomerTask.Controllers
     {
         public CustomersController(CustomerContext context) : base(context) { }
 
+        [Microsoft.AspNetCore.Mvc.Route("/api/Allcustomers")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllCustomers()
+        {
+            return null;
+        }
+
         [Microsoft.AspNetCore.Mvc.Route("/api/customers/{customerId}")]
         [HttpGet]
         public async Task<IActionResult> GetCustomer(int customerId)
@@ -93,7 +100,7 @@ namespace CustomerTask.Controllers
         }
 
         [Microsoft.AspNetCore.Mvc.Route("/api/DeleteCustomers/{customerId}")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> DeleteCustomer(int customerId)
         {
             var customer = await db.Customers.FindAsync(customerId);
