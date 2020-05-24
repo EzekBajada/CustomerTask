@@ -11,6 +11,9 @@ namespace CustomerTask.Models
         public enum Countries { Malta, England, Italy, Greece}
 
         [Required]
+        public int ID { get; set; }
+
+        [Required]
         public Countries Country { get; set;}
 
         /// <summary>

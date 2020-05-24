@@ -23,3 +23,4 @@ namespace CustomerTask.Models
         public CustomerDetails Details { get; set; }
     }
 }
+    

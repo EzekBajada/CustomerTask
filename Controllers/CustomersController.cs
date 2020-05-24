@@ -24,19 +24,19 @@ namespace CustomerTask.Controllers
         }
     }
 
-    [Microsoft.AspNetCore.Components.Route("/api/[controller]")]
     public class CustomersController : InjectedController
     {
         public CustomersController(CustomerContext context) : base(context) { }
 
+        [Microsoft.AspNetCore.Mvc.Route("/api/customers/{customerId}")]
         [HttpGet]
-        public async Task<IActionResult> GetCustomer(int id)
+        public async Task<IActionResult> GetCustomer(int customerId)
         {
-            var customer = await db.Customers.FindAsync(id);
+            var customer = await db.Customers.FindAsync(customerId);
 
             if(customer == null)
             {
-                ModelState.AddModelError("Customer ID", $"Customer {customer.ID} does not exist");
+                ModelState.AddModelError("Customer ID", $"Customer {customerId} does not exist");
                 return BadRequest(ModelState);
             }
 

@@ -20,7 +20,7 @@ namespace CustomerTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CustomerContext>(ops => ops.UseInMemoryDatabase("Customers"));
-            services.AddMvc();
+            services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +30,7 @@ namespace CustomerTask
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMvc();
         }
     }
 }
