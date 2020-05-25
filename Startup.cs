@@ -15,11 +15,15 @@ namespace CustomerTask
 {
     public class Startup
     {
+        private CustomerContext _db = new CustomerContext();
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CustomerContext>(ops => ops.UseInMemoryDatabase("Customers"));
+
+            
             // 4200 is the default port used by angular, and will not be changed
             services.AddCors(options => options.AddPolicy("ApiCorsPolicy", builder =>
             {
@@ -37,6 +41,8 @@ namespace CustomerTask
             }
             app.UseCors("ApiCorsPolicy");
             app.UseMvc();
+
+           
         }
     }
 }

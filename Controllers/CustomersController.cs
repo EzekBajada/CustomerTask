@@ -27,16 +27,24 @@ namespace CustomerTask.Controllers
 
     public class CustomersController : InjectedController
     {
+        
+
         public CustomersController(CustomerContext context) : base(context) { }
 
         [Microsoft.AspNetCore.Mvc.Route("/api/Allcustomers")]
         [HttpGet]
         public async Task<IActionResult> GetAllCustomers()
         {
-            return null;
+            var customers = db.Customers.ToList<Customers>();
+            if(customers == null)
+            {
+                ModelState.AddModelError("Customers", $"No customers available");
+                return BadRequest(ModelState);
+            }
+            return Ok(customers);
         }
 
-        [Microsoft.AspNetCore.Mvc.Route("/api/customers/{customerId}")]
+        [Microsoft.AspNetCore.Mvc.Route("/api/GetCustomer/{customerId}")]
         [HttpGet]
         public async Task<IActionResult> GetCustomer(int customerId)
         {
@@ -83,7 +91,7 @@ namespace CustomerTask.Controllers
             }
 
             var customerCheck = db.Customers.FindAsync(customer.ID);
-            if(customerCheck == null)
+            if(customerCheck.Result == null)
             {
                 ModelState.AddModelError("Customer ID", $"Customer {customer.ID} does not exist");
                 return BadRequest(ModelState);
@@ -114,6 +122,50 @@ namespace CustomerTask.Controllers
             db.Customers.Remove(customer);
             await db.SaveChangesAsync();
             return Ok(customer.ID);
+        }
+
+        [Microsoft.AspNetCore.Mvc.Route("/api/AddSomecustomers")]
+        [HttpGet]
+        public async Task<IActionResult> AddSomeCustomers()
+        {
+            Customers customer1 = new Customers()
+            {
+                ID = 1,
+                FullName = "Hand Sanitizer",
+                Position = "Tech Lead",
+                Country = Customers.Countries.Malta,
+                Activity = true
+            };
+            await db.Customers.AddAsync(customer1);
+            Customers customer2 = new Customers()
+            {
+                ID = 2,
+                FullName = "Hand-Wash sink",
+                Position = "CEO",
+                Country = Customers.Countries.Italy,
+                Activity = true
+            };
+            await db.Customers.AddAsync(customer2);
+            Customers customer3 = new Customers()
+            {
+                ID = 3,
+                FullName = "Mask",
+                Position = "Junior Developer",
+                Country = Customers.Countries.England,
+                Activity = true
+            };
+            await db.Customers.AddAsync(customer3);
+            Customers customer4 = new Customers()
+            {
+                ID = 4,
+                FullName = "Netflix",
+                Position = "Human Resources",
+                Country = Customers.Countries.England,
+                Activity = false
+            };
+            await db.Customers.AddAsync(customer4);
+            await db.SaveChangesAsync();
+            return Ok("Changes have been added");
         }
     }
 }

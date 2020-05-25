@@ -10,6 +10,8 @@ namespace CustomerTask.Models
     {
         public CustomerContext(DbContextOptions options) : base(options) { }
 
+        public CustomerContext() { }
+
         public DbSet<Customers> Customers { get; set; }
     }
 }

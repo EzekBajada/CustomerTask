@@ -28,6 +28,7 @@ namespace CustomerTask.Models
         /// This determines if the employee is an active employee or inactive
         /// </summary>
         public bool Activity { get; set; }
+       
     }
 }
     
