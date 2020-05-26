@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +15,9 @@ namespace CustomerTask.Models
 
         [Required]
         public int ID { get; set; }
+
+        [Required]
+        public string ImageName { get; set; }
 
         [Required]
         [StringLength(50)]

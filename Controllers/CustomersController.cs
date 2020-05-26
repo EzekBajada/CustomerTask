@@ -11,6 +11,10 @@ using System.Net.WebSockets;
 using Microsoft.AspNetCore.Mvc.Routing;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Runtime.CompilerServices;
 
 namespace CustomerTask.Controllers
 {
@@ -27,8 +31,6 @@ namespace CustomerTask.Controllers
 
     public class CustomersController : InjectedController
     {
-        
-
         public CustomersController(CustomerContext context) : base(context) { }
 
         [Microsoft.AspNetCore.Mvc.Route("/api/Allcustomers")]
@@ -128,22 +130,26 @@ namespace CustomerTask.Controllers
         [HttpGet]
         public async Task<IActionResult> AddSomeCustomers()
         {
+            
             Customers customer1 = new Customers()
             {
                 ID = 1,
                 FullName = "Hand Sanitizer",
                 Position = "Tech Lead",
                 Country = Customers.Countries.Malta,
-                Activity = true
+                Activity = true,
+                ImageName = "sanitizer.ico"
             };
             await db.Customers.AddAsync(customer1);
             Customers customer2 = new Customers()
             {
                 ID = 2,
-                FullName = "Hand-Wash sink",
+                FullName = "Hand-Wash Sink",
                 Position = "CEO",
                 Country = Customers.Countries.Italy,
-                Activity = true
+                Activity = true,
+                ImageName = "hand-sink.ico"
+
             };
             await db.Customers.AddAsync(customer2);
             Customers customer3 = new Customers()
@@ -152,20 +158,45 @@ namespace CustomerTask.Controllers
                 FullName = "Mask",
                 Position = "Junior Developer",
                 Country = Customers.Countries.England,
-                Activity = true
+                Activity = true,
+                ImageName = "masked-people.ico"
+
             };
             await db.Customers.AddAsync(customer3);
             Customers customer4 = new Customers()
             {
                 ID = 4,
-                FullName = "Netflix",
+                FullName = "Netfwax",
                 Position = "Human Resources",
                 Country = Customers.Countries.England,
-                Activity = false
+                Activity = false,
+                ImageName = "netfwix.ico"
+
             };
             await db.Customers.AddAsync(customer4);
             await db.SaveChangesAsync();
             return Ok("Changes have been added");
+        }
+
+        [Microsoft.AspNetCore.Mvc.Route("/api/GetFile/{fileName}")]
+        [HttpGet]
+        public async Task<FileStreamResult> GetFile(string fileName)
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, "Images/" + fileName);
+            var imageFileStream = System.IO.File.OpenRead(path);
+            return File(imageFileStream, "image/jpeg");
+        }
+
+        [Microsoft.AspNetCore.Mvc.Route("/api/UploadFile")]
+        [HttpPost]
+        public async Task<string> UploadFile([FromForm] IFormFile file)
+        {
+            string path = Path.Combine(Environment.CurrentDirectory, "Images/" + file.FileName);
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+            return file.FileName;
         }
     }
 }
