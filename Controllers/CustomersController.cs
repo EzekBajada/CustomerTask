@@ -103,6 +103,7 @@ namespace CustomerTask.Controllers
             customerCheck.Result.Position = customer.Position;
             customerCheck.Result.Country = customer.Country;
             customerCheck.Result.Activity = customer.Activity;
+            customerCheck.Result.ImageName = customer.ImageName;
 
             db.Customers.Update(customerCheck.Result);
             await db.SaveChangesAsync();
