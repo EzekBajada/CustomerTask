@@ -190,14 +190,19 @@ namespace CustomerTask.Controllers
 
         [Microsoft.AspNetCore.Mvc.Route("/api/UploadFile")]
         [HttpPost]
-        public async Task<string> UploadFile([FromForm] IFormFile file)
+        public async Task<IActionResult> UploadFile([FromForm] IFormFile file)
         {
+            if(file == null)
+            {
+                ModelState.AddModelError("File", $"File cannot be null");
+                return BadRequest(ModelState);
+            }
             string path = Path.Combine(Environment.CurrentDirectory, "Images/" + file.FileName);
             using (var stream = new FileStream(path, FileMode.Create))
             {
                 await file.CopyToAsync(stream);
             }
-            return file.FileName;
+            return Ok(file.FileName) ;
         }
     }
 }
